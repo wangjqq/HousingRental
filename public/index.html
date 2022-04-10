@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0 ,user-scalabel=0">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>快客租房</title>
+</head>
+
+<body>
+  <div class="phone-note">
+    <h1>移动web暂未开发,请先使用PC端访问</h1>
+  </div>
+  <div class="app">
+    <div class="header">
+      <div class="container">
+        <div class="logo fl">
+          <a href="index.html"><img src="images/logo.png" title="快客租房" alt=""></a>
+        </div>
+        <div class="location fl">
+          <span>成都</span>
+        </div>
+        <div class="nav fr">
+          <div class="nav-list">
+            <ul>
+              <li><a href="#">租房</a></li>
+              <li><a href="tools.html">工具</a></li>
+              <li><a href="#">发布房源</a></li>
+              <li><a href="#">了解我们</a></li>
+              <li><a href="#">下载app</a></li>
+              <li><a href="login.html" class="user">登录</a></li>
+              <li><a href="#">注册</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header-wrap">
+          <div class="wrap-slogan">
+            <h1>让租房更快捷</h1>
+          </div>
+          <div class="house-num">
+            <h2>成都快客租房真实租房155套</h2>
+          </div>
+          <div class="search">
+            <input class="search-input" type="search" placeholder="请输入区域,商圈或小区名开始找房">
+            <div class="map">
+              <span>地图</span>
+            </div>
+            <button>开始找房</button>
+            <div class="search-list">
+              <ul>
+                <li><a href="#">郫都区</a></li>
+                <li><a href="#">怎么租房</a></li>
+                <li><a href="#">最便宜的房子</a></li>
+                <li><a href="#">合租房</a></li>
+                <li><a href="#">今天是个好日子</a></li>
+              </ul>
+            </div>
+          </div>
+          <script>
+            let search = document.querySelector('.search-input[type=search]')
+            let searchList = document.querySelector('.search-list')
+            search.addEventListener('focus', function () {
+              search.style.border = '5px solid #ec811f'
+              searchList.style.display = 'block'
+            })
+            search.addEventListener('blur', function () {
+              search.style.border = '2px solid #ec811f'
+              searchList.style.display = 'none'
+            })
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
