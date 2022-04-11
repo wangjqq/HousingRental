@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
-    content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0 ,user-scalabel=0">
+    content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=0">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="shortcut icon" href="/favicon.ico" />
   <title>快客租房</title>
+  <script src="./lib/jquery.js"></script>
 </head>
 
 <body>
@@ -47,37 +48,123 @@
             <h2>成都快客租房真实租房155套</h2>
           </div>
           <div class="search">
-            <input class="search-input" type="search" placeholder="请输入区域,商圈或小区名开始找房">
+            <input id="ipt" class="search-input" type="search" placeholder="请输入区域,商圈或小区名开始找房">
             <div class="map">
               <span>地图</span>
             </div>
             <button>开始找房</button>
             <div class="search-list">
               <ul>
-                <li><a href="#">郫都区</a></li>
-                <li><a href="#">怎么租房</a></li>
-                <li><a href="#">最便宜的房子</a></li>
-                <li><a href="#">合租房</a></li>
-                <li><a href="#">今天是个好日子</a></li>
+                <li class="list1"></li>
+                <li class="list2"></li>
+                <li class="list3"></li>
+                <li class="list4"></li>
               </ul>
             </div>
           </div>
           <script>
             let search = document.querySelector('.search-input[type=search]')
             let searchList = document.querySelector('.search-list')
-            search.addEventListener('focus', function () {
-              search.style.border = '5px solid #ec811f'
-              searchList.style.display = 'block'
-            })
-            search.addEventListener('blur', function () {
-              search.style.border = '2px solid #ec811f'
-              searchList.style.display = 'none'
-            })
+            // search.addEventListener('focus', function () {
+            //   search.style.border = '5px solid #ec811f'
+            //   searchList.style.display = 'block'
+            // })
+            // search.addEventListener('blur', function () {
+            //   search.style.border = '2px solid #ec811f'
+            //   searchList.style.display = 'none'
+            // })
           </script>
+
         </div>
       </div>
     </div>
   </div>
+  <script>
+    $(function () {
+      // 1.定义延时器的Id
+      var timer = null
+      // 定义全局缓存对象
+      var cacheObj = {}
+      // 2.定义防抖的函数
+      function debounceSearch(kw) {
+        timer = setTimeout(function () {
+          getSuggestList(kw)
+        }, 500)
+      }
+      // 为输入框绑定keyup事件
+      $('#ipt').on('keyup', function () {
+        clearTimeout(timer)
+        var keywords = $(this).val().trim()
+        if (keywords.length <= 0) {
+          // $('.search-list').empty().hide()
+          console.log(1);
+          $('.list1').empty().hide()
+          $('.list2').empty().hide()
+          $('.list3').empty().hide()
+          $('.list4').empty().hide()
+          return
+        }
+        // 先判断缓存中是否有数据
+        if (cacheObj[keywords]) {
+          return renderSuggestList(cacheObj[keywords])
+        }
+        // TODO:获取搜索建议列表
+        // console.log(keywords);
+        // getSuggestList(keywords)
+        debounceSearch(keywords)
+      })
+
+      function getSuggestList(kw) {
+        $.ajax({
+          // url: 'https://suggest.taobao.com/sug?q=' + kw,
+          url: 'https://cd.lianjia.com/api/headerSearch?cityId=510100&cityName=%E6%88%90%E9%83%BD&channel=site&q=&keyword=' +
+            kw,
+          dataType: 'jsonp',
+          success: function (res) {
+            // console.log(res.data.data);
+            // console.log(res.data.data.result.length);
+            renderSuggestList(res)
+            // 1.获取到用户输入的内容,当作键
+            var k = $('#ipt').val().trim()
+            // 2.需要将数据作为值,进行缓存
+            cacheObj[k] = res
+          }
+        })
+        // console.log(keywords);
+
+      }
+      // 渲染UI结构
+      function renderSuggestList(res) {
+        if (res.data.data.result.length <= 0) {
+          console.log(0);
+          $('.list1').empty().hide()
+          $('.list2').empty().hide()
+          $('.list3').empty().hide()
+          $('.list4').empty().hide()
+          return
+        }
+        $('.search-list').show()
+        console.log(res);
+        // var htmlStr = template("tpl-suggestList", res)
+        var htmlStr1 = res.data.data.result[0].title + res.data.data.result[0].region
+        $('.list1').html(htmlStr1).show()
+        if (res.data.data.result.length >= 1) {
+          var htmlStr2 = res.data.data.result[1].title + res.data.data.result[1].region
+          $('.list2').html(htmlStr2).show()
+        }
+        if (res.data.data.result.length >= 2) {
+          var htmlStr3 = res.data.data.result[2].title + res.data.data.result[2].region
+          $('.list3').html(htmlStr3).show()
+        }
+        if (res.data.data.result.length >= 3) {
+          var htmlStr4 = res.data.data.result[3].title + res.data.data.result[3].region
+          $('.list4').html(htmlStr4).show()
+        }
+
+
+      }
+    })
+  </script>
 </body>
 
 </html>
