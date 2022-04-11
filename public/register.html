@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +10,12 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/login.css">
     <style>
-        .logo1{
+        .logo1 {
             width: 100px;
             background-color: #fff;
         }
-        .font{
+
+        .font {
             font-size: 35px;
             font-style: 微软雅黑;
             font-weight: 700;
@@ -21,11 +23,13 @@
             vertical-align: middle;
             display: inline-block;
         }
-        .margin{
+
+        .margin {
             margin-left: 450px;
         }
     </style>
 </head>
+
 <body>
     <div style="background-color: orange; height: 38px;">
         <div class="container">
@@ -42,39 +46,90 @@
             </div>
             <div class="fr display1" style="line-height: 38px;">
                 <div><a href="#">登录 </a><span>/</span><a href="register.html"> 注册</a></div>
-                <div>热线电话820-820-8820</div> 
+                <div>热线电话820-820-8820</div>
             </div>
         </div>
     </div><br><br>
     <div class="container">
-        <div><a href="index.html"><img src="./images/logo.png" alt="请稍等" class="logo1" style="vertical-align: middle;"><p class="font"> 用户注册</p></a></div>
+        <div><a href="index.html"><img src="./images/logo.png" alt="请稍等" class="logo1" style="vertical-align: middle;">
+                <p class="font"> 用户注册</p>
+            </a></div>
     </div>
     <div class="container">
         <div style=" height: 800px;" class="display">
             <div class="margin">
                 <div class="div4">
-                    <div style="font-size: 30px;font-weight: 700;color: black;"> 
-                        <div class="div2 fr" style="margin-top: 50px;"><span class="fl">用户名:</span> <input type="text"
-                            placeholder="  请输入您的用户名"  class="fl"></div> 
-                        </div><br><br>
                     <div style="font-size: 30px;font-weight: 700;color: black;">
-                        <div class="div3 fr" style="margin-top: 40px;"><span class="fl">密码:</span> <input type="password"
-                            placeholder="  请输入您的密码" class="fl"></div>
-                        </div> <br><br>
-                        <div style="font-size: 30px;font-weight: 700;color: black;"> 
-                    <div class="div3 fr" style="margin-top: 40px;margin-right: 68px;"><span class="fl">身份证号:</span> <input type="text"
-                            placeholder="  请输入您的身份证号"  class="fl"></div> 
-                        </div><br><br>
-                    <div style="margin-top: 150px;margin-right: 135px;">
-                    <button type="button" class="button"><a href="#">注册</a></button></div>
+                        <div class="div2 fr" style="margin-top: 50px;"><i class="fl">用户名:</i>
+                            <div class="fl display"><input type="text" placeholder="  请输入您的用户名"><span></span></div>
+                        </div>
+                    </div><br><br>
+                    <div style="font-size: 30px;font-weight: 700;color: black;">
+                        <div class="div3 fr" style="margin-top: 40px;"><i class="fl">密码:</i>
+                            <div class="fl"><input type="password" placeholder="  请输入您的密码"><span></span></div>
+                        </div>
+                    </div> <br><br>
+                    <div style="font-size: 30px;font-weight: 700;color: black;">
+                        <div class="div3 fr" style="margin-top: 40px;margin-right: 68px;"><i class="fl">身份证号:</i>
+                            <div class="fl"><input type="text" placeholder="  请输入您的身份证号"><span></span></div>
+                        </div>
+                    </div><br><br>
+                    <div style="font-size: 30px;font-weight: 700;color: black;">
+                        <div class="div3 fr" style="margin-top: 40px;margin-right: 68px;"><i class="fl">电话号码:</i>
+                            <div class="fl"><input type="text" placeholder="  请输入您的电话号码"><span></span></div>
+                        </div>
+                    </div><br><br>
+                    <div style="margin-top: 300px;margin-right: 500px;">
+                        <button type="button" class="button"><a href="#">注册</a></button>
+                    </div>
                 </div>
-    </div>
-    </div>
+            </div>
+        </div>
     </div>
     <footer>
         <div class="div5"><span><a href="#">快客集团</a></span> | <span><a href="#">客服中心</a></span></div>
         <hr>
         <div class="div5">关于我们:快客平台是科成420主办的租房服务网站，是中国最具影响力的租房网站和具有全球房源的租房网站。</div>
     </footer>
+    <script>
+        let input = document.querySelectorAll('input')
+        let span = document.querySelectorAll('.div4 span') //下一个兄弟 节点操作
+        for (let i = 0; i < 4; i++) {
+            input[i].addEventListener('blur', function () { //失去焦点
+                if (i == 0 || i == 1) {
+                    if (/^[a-zA-Z0-9-_]{6,16}$/.test(input[i].value)) {
+                        console.log(input.value);
+                        span[i].className = 'right'
+                        span[i].innerHTML = '输入正确'
+                    } else {
+                        span[i].className = 'error'
+                        span[i].innerHTML = '只能输入6-16位字符'
+                    }
+                }
+                else if (i == 2) {
+                    // console.log(1111);
+                    if (/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/.test(input[i].value)) {
+                        console.log(input.value);
+                        span[i].className = 'right'
+                        span[i].innerHTML = '输入正确'
+                    } else {
+                        span[i].className = 'error'
+                        span[i].innerHTML = '请输入真实的身份证号'
+                    }
+                }
+                else {
+                    if (/^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(input[i].value)) {
+                        console.log(input.value);
+                        span[i].className = 'right'
+                        span[i].innerHTML = '输入正确'
+                    } else {
+                        span[i].className = 'error'
+                        span[i].innerHTML = '请输入真实的电话号码'
+                    }
+                }
+            })
+        }
+    </script>
 </body>
+
 </html>
