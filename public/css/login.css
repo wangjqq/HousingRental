@@ -39,15 +39,23 @@
     font-size: 25px;
 }
 .div2{
-    width: 800px;
+    width: 460px;
     height: 50px;
 }
 .div3{
-    width: 770px;
+    width: 430px;
     height: 50px;
 }
 .div4{
     text-align: center;height: 318.94px;margin-top: 242px;background-color: white;
+}
+.div6{
+    width: 800px;
+    height: 50px;
+}
+.div7{
+    width: 770px;
+    height: 50px;
 }
 .logo{
     width: 613px;

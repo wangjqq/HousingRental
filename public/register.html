@@ -60,22 +60,22 @@
             <div class="margin">
                 <div class="div4">
                     <div style="font-size: 30px;font-weight: 700;color: black;">
-                        <div class="div2 fr" style="margin-top: 50px;"><i class="fl">用户名:</i>
+                        <div class="div6 fr" style="margin-top: 50px;"><i class="fl">用户名:</i>
                             <div class="fl display"><input type="text" placeholder="  请输入您的用户名"><span></span></div>
                         </div>
                     </div><br><br>
                     <div style="font-size: 30px;font-weight: 700;color: black;">
-                        <div class="div3 fr" style="margin-top: 40px;"><i class="fl">密码:</i>
+                        <div class="div7 fr" style="margin-top: 40px;"><i class="fl">密码:</i>
                             <div class="fl"><input type="password" placeholder="  请输入您的密码"><span></span></div>
                         </div>
                     </div> <br><br>
                     <div style="font-size: 30px;font-weight: 700;color: black;">
-                        <div class="div3 fr" style="margin-top: 40px;margin-right: 68px;"><i class="fl">身份证号:</i>
+                        <div class="div7 fr" style="margin-top: 40px;margin-right: 68px;"><i class="fl">身份证号:</i>
                             <div class="fl"><input type="text" placeholder="  请输入您的身份证号"><span></span></div>
                         </div>
                     </div><br><br>
                     <div style="font-size: 30px;font-weight: 700;color: black;">
-                        <div class="div3 fr" style="margin-top: 40px;margin-right: 68px;"><i class="fl">电话号码:</i>
+                        <div class="div7 fr" style="margin-top: 40px;margin-right: 68px;"><i class="fl">电话号码:</i>
                             <div class="fl"><input type="text" placeholder="  请输入您的电话号码"><span></span></div>
                         </div>
                     </div><br><br>
@@ -105,8 +105,7 @@
                         span[i].className = 'error'
                         span[i].innerHTML = '只能输入6-16位字符'
                     }
-                }
-                else if (i == 2) {
+                } else if (i == 2) {
                     // console.log(1111);
                     if (/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/.test(input[i].value)) {
                         console.log(input.value);
@@ -116,9 +115,9 @@
                         span[i].className = 'error'
                         span[i].innerHTML = '请输入真实的身份证号'
                     }
-                }
-                else {
-                    if (/^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(input[i].value)) {
+                } else {
+                    if (/^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(input[i]
+                            .value)) {
                         console.log(input.value);
                         span[i].className = 'right'
                         span[i].innerHTML = '输入正确'
